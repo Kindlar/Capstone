@@ -23,6 +23,17 @@ namespace Zander_sCDCatalog
         public MainWindow()
         {
             InitializeComponent();
+            using (ZanderCDCatalogEntities db = new ZanderCDCatalogEntities())
+            {
+                var genreList = db.Genres.ToList();
+
+                Genre genre = new Genre();
+                genre.GenreId = 3;
+                genre.GenreName = "Folk";
+
+                db.Genres.Add(genre);
+                db.SaveChanges();
+            }
         }
     }
 }
